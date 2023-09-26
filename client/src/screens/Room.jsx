@@ -110,34 +110,57 @@ const RoomPage = () => {
   ]);
 
   return (
-    <div>
-      <h1>Room Page</h1>
-      <h4>{remoteSocketId ? "Connected" : "No one in room"}</h4>
-      {myStream && <button onClick={sendStreams}>Send Stream</button>}
-      {remoteSocketId && <button onClick={handleCallUser}>CALL</button>}
-      {myStream && (
-        <>
-          <h1>My Stream</h1>
-          <ReactPlayer
-            playing
-            muted
-            height="100px"
-            width="200px"
-            url={myStream}
-          />
-        </>
-      )}
-      {remoteStream && (
-        <>
-          <h1>Remote Stream</h1>
-          <ReactPlayer
-            playing
-            muted
-            height="100px"
-            width="200px"
-            url={remoteStream}
-          />
-        </>
+    <div style={{ backgroundColor: "#E0E5EC", padding: "100px", maxWidth: "800px", margin: "0 auto" }}>
+      <h1 style={{ fontSize: "36px", marginBottom: "20px" }}>Room Page</h1>
+      <div style={{ marginBottom: "20px" }}>
+        <h4 style={{ fontSize: "24px"}}>{remoteSocketId ? "Connected" : "No one in room"}</h4>
+        {myStream && <button onClick={sendStreams} style={{
+            backgroundColor: "#007bff",
+            color: "#fff",
+            padding: "10px 30px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "24px",
+            marginRight: "50px",
+          }}>Send Stream</button>}
+        {remoteSocketId && <button onClick={handleCallUser} 
+          style={{
+            backgroundColor: "#007bff",
+            color: "#fff",
+            padding: "10px 30px",
+            border: "none",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "24px",
+          }}
+          
+        >CALL</button>}
+      </div>
+      <br></br><br></br>
+      {myStream && remoteStream && (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
+          <div style={{ margin: "0 10px" }}>
+            <h2 style={{ fontSize: "36px" }}>My Stream</h2>
+            <ReactPlayer
+              playing
+              muted
+              height="540px"
+              width="400px"
+              url={myStream}
+            />
+          </div>
+          <div style={{ margin: "0 10px" }}>
+            <h2 style={{ fontSize: "36px" }}>Remote Stream</h2>
+            <ReactPlayer
+              playing
+              muted
+              height="540px"
+              width="400px"
+              url={remoteStream}
+            />
+          </div>
+        </div>
       )}
     </div>
   );
